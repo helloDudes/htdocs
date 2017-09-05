@@ -1,0 +1,21 @@
+<?php 
+echo '{
+	"arr": [
+		{
+			"val1": 4,
+			"val2": "hello",
+			"val3": "../image/tires.jpg"
+		},
+		{
+			"val1": 2,
+			"val2": "hey",
+			"val3": "../image/shocks.jpg"
+		},
+		{
+			"val1": 3,
+			"val2": "ohh",
+			"val3": "../image/seats.jpg"
+		}
+	]
+}';
+?>

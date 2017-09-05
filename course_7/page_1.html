@@ -1,0 +1,98 @@
+<div class="course_theory" style="display: none">
+    <h1>Агрегация каналов</h1>
+    <div class="theory_text">
+        <div class="theory_page">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left" style="opacity: 0"></div>
+                <p>Задача</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В этом блоке будет разобрана <a target="_blank" href="http://ciscotips.ru/etherchannel">агрегация каналов</a> на оборудовании Cisco Systems.</p>
+            <a href="../image/courses/course_7/EtherChannel.png" target="_blank"><img src="../image/courses/course_7/EtherChannel.png" class="center-block img-thumbnail" width="700"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Цель работы</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Два коммутатора соединены между собой тремя кабелями. Те кто знают про протокол <a target="_blank" href="https://ru.wikipedia.org/wiki/STP">STP</a> сразу заметят что два порта из трех на коммутаторе Switch1 заблокированы протоколом STP, и у нас лишь один активный линк, связывающий коммутаторы, а два находятся в резерве.</p>
+            <p>Эту схему вы можете скачать по <a href="course_7/course_7.pkt" target="_blank">ссылке</a></p>
+            <a href="../image/courses/course_7/1_STP.png" target="_blank"><img src="../image/courses/course_7/1_STP.png" class="center-block img-thumbnail" width="500"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>EtherChannel</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p style="text-align: center">Если мы хотим использовать все три линка сразу, есть очень простое и эффективное решение - агрегация каналов, или в терминологии Cisco - <a target="_blank" href="http://ciscotips.ru/etherchannel">EtherChannel.</a> Применение EtherChannel позволяет объединить несколько физических интерфейсов в один логический интерфейс port-channel, а потом выполнять соединение между логическими интерфейсами.</p>
+            <p style="text-align: center">Рассмотрим как это делается на практике (рассмотрим простейший случай).</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка EtherChannel</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Выполним на Switch0 следующие команды</p>
+            <p class="command">Switch(config)#interface range fastEthernet 0/1-3</p>
+            <p class="command">Switch(config-if-range)#shutdown</p>
+            <p class="command">Switch(config-if-range)#channel-group 1 mode on</p>
+            <p>Затем  аналогичные команды на Switch1</p>
+            <p class="command">Switch(config)#interface range fastEthernet 0/1-3</p>
+            <p class="command">Switch(config-if-range)#shutdown</p>
+            <p class="command">Switch(config-if-range)#channel-group 1 mode on</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка EtherChannel</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_7/2017-06-15_21-16-56.png" target="_blank"><img src="../image/courses/course_7/2017-06-15_21-16-56.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p>Как нетрудно понять этими командами мы запихиваем диапазон интерфейсов начиная с fastEthernet 0/1 до fastEthernet 0/3 в port-channel с номером 1</p>
+            <p>Как видим связи между коммутаторами нет, поэтому, нам остается поднять все физические интерфейсы внутри port-channel 1.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка EtherChannel</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_7/2017-06-15_21-29-28.png" target="_blank"><img src="../image/courses/course_7/2017-06-15_21-29-28.png" class="pull-right img-thumbnail" width="450" style="margin-left: 20px"></a>
+            <p>Для этого на обоих коммутаторах выполняем команды</p>
+            <p class="command">Switch(config)#interface range fastEthernet 0/1-3</p>
+            <p class="command">Switch(config-if-range)#no shutdown</p>
+            <p>Как можно заметить все интерфейсы на концах линков между коммутаторами в работе, то есть мы имеем 3 активных линка между ними.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка EtherChannel</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>И заметьте это не приводит <a target="_blank" href="http://xgu.ru/wiki/%D0%9F%D0%B5%D1%82%D0%BB%D1%8F_%D0%BA%D0%BE%D0%BC%D0%BC%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%B8">к образованию петель</a>. Коммутатор понимает что в данном случае используется EtherChannel и в случае необходимости отправки широковещательного фрейма он оправит его только через один порт входящий в port-channel, а не через все.</p>
+            <p>Аналогичным образом коммутатор, при получении широковещательного фрейма, из каналов, входящих в EtherChannel, не будет отправлять его в другие каналы входящие в этот же EtherChannel.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_7/2017-06-15_21-39-01.png" target="_blank"><img src="../image/courses/course_7/2017-06-15_21-39-01.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p>Для просмотра информации о существующих на коммутаторе EtherChannel можно использовать следующую команду</p>
+            <p class="command">Switch# show etherchannel summary</p>
+            <p>Данная команда позволяет видить количество port-channel, их номера и физические порты. Для получения более подробной информации можно использовать команды <span class="command">show etherchannel port-channel</span> и <span class="command">show etherchannel detail</span>.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>На этом всё</p>
+            </div>
+            <p>В заключении хочется добавить, что в данной статье приведен пример простейшего статического агрегирования каналов. Более заинтересованный читатель может почитать про протоколы <a target="_blank" href="http://xgu.ru/wiki/LACP">LACP</a> и <a target="_blank" href="https://ru.wikipedia.org/wiki/PAgP">PAgP.</a></p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/course_page.js"></script>

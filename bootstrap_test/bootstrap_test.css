@@ -1,0 +1,23 @@
+body {
+	padding-top: 70px;
+}
+.features .glyphicon {
+	font-size:32px;
+	color: red;
+}
+footer {
+	background: #5F5F5F;
+	width: 100%;
+	color: white;
+	margin-top: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px
+}
+footer a {
+	color: #00B1AF;
+}
+.glyphicon-th {
+	color: #939393;
+	font-size: 14px;
+	margin: 0px 0px 2px 2px;
+}

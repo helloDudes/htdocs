@@ -1,0 +1,13 @@
+$color: #333;
+$font-color: #999;
+@mixin dives( $width, $color:#999) {
+	background: $color;
+	width: $width;
+}
+.body {
+	background: $color;
+	width: 250px;
+}
+div {
+	@include dives(450px);
+}

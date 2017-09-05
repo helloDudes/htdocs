@@ -1,0 +1,105 @@
+<div class="course_theory" style="display: none">
+    <h1>Азы маршрутизации</h1>
+    <div class="theory_text">
+        <div class="theory_page">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left" style="opacity: 0"></div>
+                <p>Задача</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В данной статье мы поговорим <a target="_blank" href="http://ciscotips.ru/routing">о маршрутизации</a> между различными сетями, непосредственно подключенными к интерфейсам маршрутизатора.</p>
+            <a href="../image/courses/course_8/cisco-routers3.jpg" target="_blank"><img src="../image/courses/course_8/cisco-routers3.jpg" class="center-block img-thumbnail" width="520"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Топология</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_8/2017-06-15_22-41-23.png" target="_blank"><img src="../image/courses/course_8/2017-06-15_22-41-23.png" class="pull-right img-thumbnail" width="400" style="margin-left: 20px"></a>
+            <p>У нас есть один маршрутизатор, и к его интерфейсам подключены сети с различными <a target="_blank" href="http://paulnn.ru/IP.html">адресациями</a>. Что нужно сделать в такой ситуации, чтобы настроить маршрутизацию между ними? Задать интерфейсам маршрутизатора адреса, из диапазона подключенных к нему сетей. Прописывать какие-либо маршруты не нужно, маршрутизатор все сделает сам.</p>
+            <p>Посмотрим, как это происходит на конкретном примере. Откроем CiscoPacket Tracer и соберем в нем сеть из одного маршрутизатора 2811 и двух ПК.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка адреса</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Зададим интерфейсам маршрутизатора IP адреса. Интерфейсу FastEthernet0/0 присвоим IP адрес 192.168.1.1 с маской 24, а интерфейсу  FastEthernet0/1 IP адрес 10.10.10.1 с маской 8. Для этого выполним следующие команды.</p>
+            <p class="command">Router(config)#interface fastEthernet 0/0</p>
+            <p class="command">Router(config-if)#ip address 192.168.1.1 255.255.255.0</p>
+            <p class="command">Router(config-if)#no shutdown</p>
+            <p class="command">Router(config-if)#exit</p>
+            <p class="command">Router(config)#interface fastEthernet 0/1</p>
+            <p class="command">Router(config-if)#ip address 10.10.10.1 255.0.0.0</p>
+            <p class="command">Router(config-if)#no shutdown</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_8/2017-06-15_22-31-33.png" target="_blank"><img src="../image/courses/course_8/2017-06-15_22-31-33.png" class="pull-right img-thumbnail" width="450" style="margin-left: 20px"></a>
+            <p>После того как вы применили данные команды команды, выйдите из режима конфигурации и выполните команду</p>
+            <p class="command">show ip route</p>
+            <p>Данная команда отобразит вам содержимое таблицы маршрутизации</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Подключение ПК1</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Как видно, таблица маршрутизации на данный момент пуста. На экране отобразилась лишь справочная информация о сокращениях, используемых для обозначения маршрутов. В будущем она нам пригодиться.</p>
+            <p>Теперь подключим к нашему маршрутизатору сети, с адресациями. Подключим к интерфейсам маршрутизатора по одному компьютеру. Сначала, подключим к интерфейсу FastEthernet 0/0 компьютер с IP адресом 192.168.1.100, маска 24, в качестве основного шлюза укажите ему 192.168.1.1. Для подключения используйте тип соединения Copper Cross-Over.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Вторая проверка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_8/2017-06-15_22-45-35.png" target="_blank"><img src="../image/courses/course_8/2017-06-15_22-45-35.png" class="pull-right img-thumbnail" width="450" style="margin-left: 20px"></a>
+            <p>После этого не подключайте сразу второй компьютер, а перейдите на маршрутизатор и посмотрите содержимое его таблицы маршрутизации.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Анализ</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_8/2017-06-15_22-59-31.png" target="_blank"><img src="../image/courses/course_8/2017-06-15_22-59-31.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p>Как можно заметить в нашей таблице по умолчанию появился один маршрут, а точнее информация о подключенной непосредственно к маршрутизатору сети, выглядящая как <span class="command">C 192.168.1.0/24 is directly connected, FastEthernet0/0</span>. Буква C обозначает, что данная сеть подключена непосредственно к данному маршрутизатору, 192.168.1.0/24 - это адрес данной сети, а FastEthernet0/0 - это интерфейс через который она подключена.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Подключение ПК2</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_8/2017-06-15_23-05-16.png" target="_blank"><img src="../image/courses/course_8/2017-06-15_23-05-16.png" class="pull-left img-thumbnail" width="420" style="margin-right: 20px"></a>
+            <p>Теперь подключим в Packet Tracer к маршрутизатору второй компьютер. Компьютеру зададим IP адрес 10.10.10.100, маска 24, в качестве основного шлюза укажем 10.10.10.1.</p>
+            <p>После этого снова просмотрим содержимое таблицы маршрутизации маршрутизатора.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Третья проверка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_8/2017-06-15_23-15-18.png" target="_blank"><img src="../image/courses/course_8/2017-06-15_23-15-18.png" class="pull-right img-thumbnail" width="380" style="margin-left: 20px"></a>
+            <p>Как можно заметить, в ней появилась информация и о второй, подключенной к маршрутизатору сети. Проверим доступность компьютеров одной сети из другой. Для этого перейдите в консоль компьютера с адресом 10.10.10.100 и выполните в ней команду <span class="command">ping 192.168.1.100</span>. Если пинги проходят, то все хорошо - маршрутизация работает. Для интереса так же можете выполнить <span class="command">tracert  192.168.1.100</span>.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Ничего сложного</p>
+            </div>
+            <p style="text-align: center; margin-top: 100px">На пути к 192.168.1.100 пакеты сначала попадают на интерфейс маршрутизатора с IP адресом 10.10.10.1, маршрутизируются и потом поступают на компьютер с адресом 192.168.1.100 в другой сети.</p>
+            <p style="text-align: center">Так настраивается маршрутизация между сетями, подключенными к одному маршрутизатору.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/course_page.js"></script>

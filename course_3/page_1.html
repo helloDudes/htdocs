@@ -1,0 +1,263 @@
+<div class="course_theory" style="display: none">
+    <h1>Построение простейшей сети</h1>
+    <div class="theory_text">
+         <div class="theory_page">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left" style="opacity: 0"></div>
+                <p>Пример локальной вычислительной сети</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-right" style="margin-left: 20px">
+                <a href="../image/courses/course_3/cpt9.png" target="_blank"><img  src="../image/courses/course_3/cpt9.png" width="260"></a>
+                <p>Пример сети в cisco packet tracer</p>
+            </div>
+            <p>Рассмотрим на примере создание локальной вычислительной сети в cisco packet tracer, сеть представлена на рисунке. Далее описывается пошаговая инструкция.</p>
+            <p>Как известно, локальная вычислительная сеть – это компьютерная сеть, покрывающая обычно относительно небольшую территорию или небольшую группу зданий. В нашем случае это всего-навсего 6 рабочих станций, определенным образом связанных между собой. Для этого используются сетевые <a target="_blank" href="http://thedifference.ru/chem-otlichayutsya-xab-i-kommutator/">концентраторы (хабы) и коммутаторы (свичи).</a></p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Выбор оборудования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В нижнем левом углу Packet Tracer выбираем устройства «Сетевые коммутаторы», и, в списке справа, выбираем коммутатор 2950-24,нажимая на него левой кнопкой мыши, вставляем его в рабочую область. Так же поступает с «Сетевым концентратором (Hub-PT)» и «Рабочими станциями (PC-PT)», в соответствии с рисунками</p>
+            <div class="img-thumbnail pull-left" style="margin-top: 70px">
+                <a href="../image/courses/course_3/cpt10.png" target="_blank"><img  src="../image/courses/course_3/cpt10.png" width="290"></a>
+                <p>Выбирается коммутатор 2950-24</p>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-top: 70px">
+                <a href="../image/courses/course_3/cpt11.png" target="_blank"><img  src="../image/courses/course_3/cpt11.png" width="290"></a>
+                <p>Выбирается концентратор Hub-PT</p>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-top: 70px">
+                <a href="../image/courses/course_3/cpt12.png" target="_blank"><img  src="../image/courses/course_3/cpt12.png" width="290"></a>
+                <p>Выбирается персональный компьютер PC-PT</p>
+            </div>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Выбор оборудования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail center-block" style="width: 610px">
+                <a href="../image/courses/course_3/2017-06-01_19-43-43.png" target="_blank"><img src="../image/courses/course_3/2017-06-01_19-43-43.png" width="600"></a>
+                <p>Размещение компьютеров, коммутатора и концентратора на рабочей области</p>
+            </div>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Соединение устройств</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Далее необходимо соединить устройства, используя соответствующий интерфейс. Для соединения компьютеров к коммутатору и концентратору используется кабель типа «медный прямой»</p>
+            <a href="../image/courses/course_3/cpt14.png" target="_blank"><img src="../image/courses/course_3/cpt14.png" width="370"></a>
+            <p>А для соединения между собой коммутатора и концентратора используется медный кроссовер кабель</p>
+            <a href="../image/courses/course_3/cpt15.png" target="_blank"><img src="../image/courses/course_3/cpt15.png" width="370"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Соединение устройств</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-right: 20px">
+                <a href="../image/courses/course_3/cpt16.png" target="_blank"><img src="../image/courses/course_3/cpt16.png" width="350"></a>
+                <p>Выбирается свободный порт на компьютере</p>
+            </div>
+            <p>Далее, для соединения двух устройств, необходимо выбрать соответствующий вид кабеля и нажать на одно устройство (выбрав произвольный свободный порт FastEthernet) и на другое устройство (также выбрав произвольный свободный порт FastEthernet), в соответствии с рисунками</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Последовательность выполняемых действи</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left">
+                <a href="../image/courses/course_3/cpt17.png" target="_blank"><img src="../image/courses/course_3/cpt17.png" width="350"></a>
+                <p>Выбирается свободный порт на коммутаторе</p>
+            </div>
+            <div class="img-thumbnail pull-right">
+                <a href="../image/courses/course_3/cpt18.png" target="_blank"><img src="../image/courses/course_3/cpt18.png" width="400"></a>
+                <p>Соединение медным прямым кабелем ПК 0 и коммутатор 0</p>
+            </div>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Соединение устройств</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-right">
+                <a href="../image/courses/course_3/cpt19.png" target="_blank"><img src="../image/courses/course_3/cpt19.png" width="400"></a>
+                <p>Подключение устройств между собой</p>
+            </div>
+            <p>Аналогично выполняется соединение для всех остальных устройств</p>
+            <p>Важно! Соединение между коммутатором и концентратором выполняется кроссовером</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-right: 20px">
+                <a href="../image/courses/course_3/cpt20.png" target="_blank"><img src="../image/courses/course_3/cpt20.png" width="400"></a>
+                <p>Окно настройки компьютера PC0</p>
+            </div>
+            <p>Далее идет самый важный этап – настройка. Так как мы используем устройства, работающие на начальных уровнях сетевой модели OSI (коммутатор на 2ом, концентратор – на 1ом), то их настраивать не надо. Необходима лишь настройка рабочих станций, а именно: IP-адреса, маски подсети.</p>            <p>Ниже приведена настройка лишь одной станции (PC1) – остальные настраиваются аналогично. Производим двойной щелчок по нужной рабочей станции</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_3/cpt21.png" target="_blank"><img src="../image/courses/course_3/cpt21.png" class="img-thumbnail pull-left" width="420" style="margin-right: 20px"></a>
+            <p> В открывшемся окне выбирается вкладку Рабочий стол, далее – «Настройка IP», в соответствии с рисунком</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Открывается окно, где нужно ввести IP-адрес и маску.</p>
+            <a href="../image/courses/course_3/cpt22.png" target="_blank"><img src="../image/courses/course_3/cpt22.png" class="img-thumbnail pull-left" width="370"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Аналогично присваиваются IP-адреса всем остальным компьютерам.</p>
+            <p>Важно! IP-адреса всех рабочих станций должны находиться в одной и той-же подсети (то есть из одного диапазона), иначе процесс ping не выполнится. Поле шлюза и DNS-сервера можно не заполнять.</p>
+            <p>Когда настройка завершена, выполняется ping-процесс. Например, запускается с PC5 и проверять наличие связи с PC1.</p>
+            <p>Важно! Можно произвольно выбирать, откуда запускать ping-процесс, главное, чтобы выполнялось условие: пакеты должны обязательно пересылаться через коммутатор и концентратор.</p>
+            <p>Для этого производим двойной щелчок по нужной рабочей станции, в открывшемся окне выбираем вкладку «Рабочий стол», далее – «Командная строка»</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-right: 20px">
+                <a href="../image/courses/course_3/cpt23.png" target="_blank"><img src="../image/courses/course_3/cpt23.png" width="400"></a>
+                <p>Выбор режима «Командная строка»</p>
+            </div>
+            <div class="img-thumbnail pull-right">
+                <a href="../image/courses/course_3/cpt24.png" target="_blank"><img src="../image/courses/course_3/cpt24.png" width="400"></a>
+                <p>Режим «Командная строка»</p>
+            </div>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-right">
+                <a href="../image/courses/course_3/cpt25.png" target="_blank"><img src="../image/courses/course_3/cpt25.png" width="400"></a>
+                <p>Результат выполнение команды «ping»</p>
+            </div>
+            <p>Нам предлагают ввести команду, что мы и делаем:</p>
+            <p class="command">PC> ping 192.168.0.1</p>
+            <p>Нажимаем клавишу Enter. Если все настроено верно, то мы увидим следующую информацию, представленную на рисунке</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-right" style="margin-left: 20px">
+                <a href="../image/courses/course_3/cpt26.png" target="_blank"><img src="../image/courses/course_3/cpt26.png" width="330"></a>
+                <p>Выбирается сообщение, для команды «ping»</p>
+            </div>
+            <p>Это означает, что связь установлена, и данный участок сети работает исправно.</p>
+            <p>Также Packet Tracer позволяет выполнять команду «ping» значительно быстрее и удобнее. Для этого, выбирается на боковой панели сообщение, в соответствии с рисунком</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-right: 20px">
+                <a href="../image/courses/course_3/cpt27.png" target="_blank"><img src="../image/courses/course_3/cpt27.png" width="350"></a>
+                <p>Выбирается сообщение, для команды «ping»</p>
+            </div>
+            <p>Далее нужно кликнуть мышкой по компьютеру от кого будет передавать команда <span class="command">ping</span> и еще раз щелкнуть по компьютеру, до которого будет выполнять команда <span class="command">ping</span>. В результате будет выполнена команда <span class="command">ping</span>, результат отобразиться в нижнем правом угле, в соответствии с рисунком.</p>
+            <p>Для более детального отображения результата выполнения команды выберите «Переключить окно списка PDU», в соответствии с рисунком</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail center-block" style="width: 360px">
+                <a href="../image/courses/course_3/cpt28.png" target="_blank"><img src="../image/courses/course_3/cpt28.png" width="350"></a>
+                <p>Результат выполнения команды «ping»</p>
+            </div>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Режим моделирования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-right: 20px">
+                <a href="../image/courses/course_3/cpt29.png" target="_blank"><img src="../image/courses/course_3/cpt29.png" width="400"></a>
+                <p>Переход в «режим симуляции»</p>
+            </div>
+            <p>В Packet Tracer предусмотрен режим моделирования, в котором подробно описывается и показывается, как работает утилита Ping. Поэтому необходимо перейти в «режим симуляции», нажав на одноименный значок в нижнем левом углу рабочей области, или по комбинации клавиш Shift+S. Откроется «Панель моделирования», в которой будут отображаться все события, связанные с выполнения ping-процесса, в соответствии с рисунком</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Режим моделирования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-right" style="margin-left: 20px">
+                <a href="../image/courses/course_3/cpt30.png" target="_blank"><img src="../image/courses/course_3/cpt30.png" width="470"></a>
+                <p>Настройка фильтра</p>
+            </div>
+            <p>Перед выполнение симуляции необходимо задать фильтрацию пакетов. Для этого нужно нажать на кнопку «Изменить фильтры», откроется окно, в соответствии с рисунком, в котором нужно оставить только <a target="_blank" href="https://ru.wikipedia.org/wiki/ICMP">«ICMP»</a> и <a target="_blank" href="https://ru.wikipedia.org/wiki/ARP">«ARP».</a></p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Режим моделирования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="img-thumbnail pull-left" style="margin-right: 20px">
+                <a href="../image/courses/course_3/cpt31.png" target="_blank"><img src="../image/courses/course_3/cpt31.png" width="470"></a>
+                <p>Переход в «режим симуляции»</p>
+            </div>
+            <p>Теперь необходимо повторить запуск ping-процесса. После его запуска можно сдвинуть «Панель моделирования», чтобы на схеме спроектированной сети наблюдать за отправкой/приемкой пакетов.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Режим моделирования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Кнопка «Авто захват/Воспроизведение» подразумевает моделирование всего ping-процесса в едином процессе, тогда как «Захват/Вперед» позволяет отображать его пошагово.</p>
+            <p>Чтобы узнать информацию, которую несет в себе пакет, его структуру, достаточно нажать правой кнопкой мыши на цветной квадрат в графе «Информация».</p>
+            <p>Моделирование прекращается либо при завершении ping-процесса, либо при закрытии окна «Редактирования» соответствующей рабочей станции.</p>
+            <p>Для удаления задания нажимается кнопка «Удалить» в нижней части экрана.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Отлично</p>
+            </div>
+            <p style="text-align: center">И так, мы научились основам работы с программой Cisco, рассмотрели основные возможности и принципы настройки, путем пошаговой инструкции по созданию локальной вычислительной сети.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/course_page.js"></script>

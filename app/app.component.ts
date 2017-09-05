@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-     
+
 @Component({
     selector: 'my-app',
-    template: `<label>Введите имя:</label>
-                 <input [(ngModel)]="name" placeholder="name">
-                 <h1>Добро пожаловать {{name}}!</h1>`
+    template: `<h1 (mouseover)="titleAlert($event)">{{title}}</h1>
+        <car-parts></car-parts>`
 })
-export class AppComponent { 
-    name= '';
+export class AppComponent {
+    title = 'Ultra Racing';
+    titleAlert(event) {
+        alert(event.clientX + " " + event.clientY);
+    };
 }

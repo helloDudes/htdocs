@@ -1,0 +1,279 @@
+<div class="course_theory" style="display: none">
+    <h1>Основы работы с Cisco IOS</h1>
+    <div class="theory_text">
+        <div class="theory_page">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left" style="opacity: 0"></div>
+                <p>Задача</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В данном сценарии мы разберемся как подключаться к сетевому оборудованию и изучим основы работы с операционной системой Cisco IOS.</p>
+            <a href="../image/courses/course_4/Cisco IOS Configuration Mistakes.png" target="_blank"><img src="../image/courses/course_4/Cisco IOS Configuration Mistakes.png" class="center-block img-thumbnail" width="600"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Цель работы</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В данном блоке мы научимся:</p>
+            <ul>
+                <li>-подключаться к оборудованию по консоли</li>
+                <li>-задавать пароль для привелегированного режима enable</li>
+                <li>-создавать пользователей</li>
+                <li>-выбирать тип удалённого подключения</li>
+                <li>-устанавливать и включать авторизацию на подключение к консоли для удалённых пользователей</li>
+            </ul>
+            <p>Давайте начнём</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создаём топологию сети</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-left img-thumbnail" style="margin-right: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_21-50-28.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_21-50-28.png" width="400px"></a>
+                <p>Топология должна выглядеть так</p>
+            </div>
+            <p>Открываем программу Cisco Packet Tracer.</p>
+            <p>В левом нижней части окна программы с помощью мыши выбираем в End Devices PC-PT.</p>
+            <p>Аналогично выбираем Switch модели 2960 в Network Devices.</p>
+            <p>Соединяем это оборудование кабелем Console. Выбираем необходимый кабель, который находится во вкладке Connections. Для подключения PC используем разъём RS 232, для подключения Switch используем разъём Console.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Подключение к терминалу</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-right img-thumbnail" style="margin-left: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_21-59-08.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_21-59-08.png" width="530px"></a>
+                <p>Terminal</p>
+            </div>
+            <p>Далее нажимаем правой кнопкой мыши на PC.</p>
+            <p>И в разделе Desktop выбираем Terminal.</p>
+            <p>В открывшимся терминале нажимаем enter.</p>
+            <p>Устройство ждёт наших комманд.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Работа с Cisco IOS</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-left img-thumbnail" style="margin-right: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_22-05-30.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_22-05-30.png" width="530px"></a>
+                <p>Доступные команды</p>
+            </div>
+            <p>Мы хотим увидеть список всех доступных команд в этом режиме.</p>
+            <p>Введите команду, которая используется для просмотра всех доступных команд:</p>
+            <p class="command">Switch >?</p>
+            <p>Клавишу Enter нажимать не надо.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Работа с Cisco IOS</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-right img-thumbnail" style="margin-left: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_22-13-08.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_22-13-08.png" width="530px"></a>
+                <p>Доступные команды в режиме enable</p>
+            </div>
+            <p>Теперь войдите в привилегированный режим.</p>
+            <p class="command">Switch >enable</p>
+            <p>Просмотрите список доступных команд в привилегированном режиме. Как видите их гораздо больше, потому как привелегированный режим предоставляет гораздо больше возможностей.</p>
+            <p class="command">Switch #?</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Работа с Cisco IOS</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Выйти из привилегированного режима можно при помощи команды <span class="command">Disable</span> или <span class="command">exit</span>. Для автоматического дописания команд можно использовать табулцию.</p>
+            <p>Для примера напишите</p>
+            <p class="command">Switch> en</p>
+            <p>И нажмите Tab. Тут же появится</p>
+            <p class="command">Switch> enable</p>
+            <p>Однако если при наличии вариативности команд, Tab не поможет.</p>
+            <p class="command">Switch> e?</p>
+            <p>Вы увидели список доступных команд.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Установка имени устройства</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Перейдём в режим конфигурации</p>
+            <p class="command">Switch #config terminal</p>
+            <p class="command">Switch (config)#</p>
+            <p>Имя хоста сетевого устройства используется для локальной идентификации.</p>
+            <p>Когда вы входите в сетевое устройство, вы видите имя хоста перед символом режима (">" или "#"). Это имя может быть использовано для определения места нахождения.</p>
+            <p>Установите "Switch1" как имя вашего сетевого устройства.</p>
+            <p class="command">Switch (config)#hostname Switch 1</p>
+            <p class="command">Switch1(config)#</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Пароль доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_4/2017-06-05_22-37-49.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_22-37-49.png" class="pull-right img-thumbnail" width="400" style="margin-left: 20px"></a>
+            <p>Пароль доступа позволяет вам контролировать доступ в привилегированный режим. Это очень важный пароль, потому что в привилегированном режиме можно вносить конфигурационные изменения. Установите пароль доступу "password1".</p>
+            <p class="command">Switch1(config)#enable password password1</p>
+            <p>Теперь испытаем этот пароль. Выйдите из сетевого устройства и попытайтесь зайти в привилегированный режим.</p>
+            <p>Введите пароль и если всё правильно вы войдёте в привилегированный режим.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Пароль доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-right img-thumbnail" style="margin-left: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_22-46-35.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_22-46-35.png" width="530px"></a>
+                <p>Пароль</p>
+            </div>
+            <p>Введите пароль и если всё правильно вы войдёте в привилегированный режим.</p>
+            <p>Однако это не самый надёжный способ защиты, потому как любой, получивший прямой доступ к коммутатору в привилегированном может узнать пароль при помощи команды</p>
+            <p class="command">Switch1# show run</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Пароль доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-right img-thumbnail" style="margin-left: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_22-58-46.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_22-58-46.png" width="530px"></a>
+                <p>Теперь пароль выглядит по другому</p>
+            </div>
+            <p>Для решения данной проблемы можно использовать шифрование пароля</p>
+            <p class="command">Switch1(config)# service password-encryption</p>
+            <p>Проверим</p>
+            <p class="command">Switch1(config)# exit</p>
+            <p class="command">Switch1# show run</p>
+            <p>Теперь ваш пароль зашифрован, и злоумышленник не сможет так просто  заполучить его</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Пароль доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-right img-thumbnail" style="margin-left: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_23-11-37.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_23-11-37.png" width="400px"></a>
+                <p>Если вы введёте старый пароль</p>
+                <p>С вас потребуют новый</p>
+            </div>
+            <p>Так же можно использовать параметр secret</p>
+            <p class="command">Switch1# conf t</p>
+            <p class="command">Switch1(config)# enable secret password2</p>
+            <p class="command">Switch1(config)# exit</p>
+            <p class="command">Switch1# show run</p>
+            <p>Этот пароль автоматически зашифрован и теперь приоритетен. Без него войти в привилегированный режим невозможно.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Пароль доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_4/2017-06-05_23-15-09.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_23-15-09.png" class="center-block img-thumbnail" width="590px"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Локальный пользователь</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Теперь создадим локального пользователя. Это можно сделать в режиме конфигурации терминала. Не забывайте пользоваться «?» и «Tab» для упрощения</p>
+            <p class="command">Switch1(config)# username admin privilege 15 password adminpass</p>
+            <p>Мы задали имя пользователя admin, задали ему самую высокую, пятнадцатую привилегию и пароль adminpass.</p>
+            <p>Чтобы включить авторизацию пользователя набираем</p>
+            <p class="command">Switch1(config)# line console 0</p>
+            <p class="command">Switch1(config-line)# login local</p>
+            <p>Выходим из привилегированного режима</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Локальный пользователь</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-left img-thumbnail" style="margin-right: 20px;">
+                <a href="../image/courses/course_4/2017-06-05_23-27-57.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_23-27-57.png" width="500px"></a>
+                <p>Теперь для входа нужна авторизация</p>
+            </div>
+            <p>Создание пользователя и настройка авторизации завершины, пора двигаться дальше.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка адреса</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Перейдём к настройке ip адреса.</p>
+            <p>В коммутаторе ip адреса всегда настраиваются на логических интерфейсах. Для этого заходим в режим конфигурации терминала.</p>
+            <p class="command">Switch1(config)# interface Vlan1</p>
+            <p class="command">Switch1(config-if)# ip address 192.168.0.1 255.255.255.0</p>
+            <p class="command">Switch1(config-if)# no shutdown</p>
+            <p>Ip адрес настроен. Теперь настроим виртуальные терминальные линии. Для этого входим в режим конфигурирования терминальных линий.</p>
+            <p class="command">Switch1(config)# line vty 0 4</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка виртуальных терминальных линий</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Здесь мы можем выбрать транспортный протокол, а именно входящий <a target="_blank" href="https://ru.wikipedia.org/wiki/Telnet">telnet</a>, потому как в Cisco Packet Tracer отсутствует <a target="_blank" href="https://ru.wikipedia.org/wiki/SSH">SSH</a> клиент.</p>
+            <p class="command">Switch1(config-line)# transport input telnet</p>
+            <p class="command">Switch1(config-line)# login local</p>
+            <p>Выходим из режима конфигурирования</p>
+            <p class="command">Switch1(config-line)#exit</p>
+            <p class="command">Switch1(config)#exit</p>
+            <p>Теперь необходимо сохранить изменения</p>
+            <p class="command">Switch1# wr mem</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверим правильность конфигурации</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_4/2017-06-05_23-48-31.png" target="_blank"><img src="../image/courses/course_4/2017-06-05_23-48-31.png" class="pull-right img-thumbnail" width="580" style="margin-left: 20px"></a>
+            <p>Соединяем PC с Switch кабелем типа Copper Straight-Throught.</p>
+            <p>Устанавливаем PC ip адрес 192.168.0.2 и маску подсети 255.255.255.0.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Удалёный доступ</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <div class="pull-right img-thumbnail" style="margin-left: 20px;">
+                <a href="../image/courses/course_4/2017-06-06_00-02-12.png" target="_blank"><img src="../image/courses/course_4/2017-06-06_00-02-12.png" width="500px"></a>
+                <p>Удалённый доступ</p>
+            </div>
+            <p>Открываем его командную строку и проверяем ping с адресом коммутатора 192.168.0.1.</p>
+            <p class="command">C:\> ping 192.168.0.1</p>
+            <p>Первый запрос возможно будет потерян, но это нормально, если остальные три пройдут успешно.</p>
+            <p>Теперь проверим telnet.</p>
+            <p class="command">C:\> telnet 192.168.0.1</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>На этом всё</p>
+            </div>
+            <p style="text-align: center">Если все предыдущие действия выполнены правильно, мы получим удалённый доступ к терминалу, и у вас должен быть запрошен логин и пароль для входа в терминал.</p>
+            <p style="text-align: center">Таким образом мы завершили настройки, которые как правило производятся при подключении настоящего коммутатора, но через программу Cisco Packet Tracer.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/course_page.js"></script>

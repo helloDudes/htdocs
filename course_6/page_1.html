@@ -1,0 +1,187 @@
+<div class="course_theory" style="display: none">
+    <h1>Настройка VLAN между коммутаторами</h1>
+    <div class="theory_text">
+        <div class="theory_page">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left" style="opacity: 0"></div>
+                <p>Задача</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_6/2017-06-13_22-27-26.png" target="_blank"><img src="../image/courses/course_6/2017-06-13_22-27-26.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p>В прошлом блоке мы разобрали как настроить порты доступа для VLAN на отдельных коммутаторах фирмы Cisco, но этого мало, ведь мы пока еще не умеем передавать данные VLAN-ов между коммутаторами. Мы рассмотрим этот вопрос и научимся настраивать <a target="_blank" href="https://supportforums.cisco.com/ru/document/95091">транковые порты (trunk).</a></p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание топологии</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Нам понадобится два коммутатора модели 2960 и 4 ПК, на каждом из этих коммутаторов подняты VLAN с номерами 2 и 3. Порт FastEth 0/1 является портом доступа VLAN 2, а порт FastEth 0/2 портом доступа VLAN 3, одинаково на обоих коммутаторах.  К порту FastEth 0/1 первого коммутатора подключен компьютер с IP адресом 192.168.1.1/24, к порту FastEth 0/2 компьютер с IP адресом 192.168.1.101/24. Аналогичным образом ко второму коммутатору подключены компьютеры с IP адресами 192.168.1.2/24 и 192.168.1.102/24. Коммутаторы не соединены между собой.</p>
+            <p>Такую схему вы можете скачать по <a href="course_6/course_6.pkt" target="_blank">ссылке</a></p>
+            <p>Или сконфигурировать её, выполнив следующие инструкции</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание топологии</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Зададим IP адреса. Оба коммутатора настроим, используя следующие команды.</p>
+            <ul class="pull-left" style="width: 450px; margin-top: 50px">
+                <li style="margin-left: 10px" class="command">Switch(config)#vlan 2</li>
+                <li style="margin-left: 10px" class="command">Switch(config-vlan)#exit</li>
+                <li style="margin-left: 10px" class="command">Switch(config)#vlan 3</li>
+                <li style="margin-left: 10px" class="command">Switch(config-vlan)#exit</li>
+                <li style="margin-left: 10px" class="command">Switch(config)#interface fastEthernet 0/1</li>
+                <li style="margin-left: 10px" class="command">Switch(config-if)#switchport mode access</li>
+            </ul>
+            <ul class="pull-right" style="width: 450px; margin-top: 50px">
+                <li style="margin-left: 10px" class="command">Switch(config-if)#switchport access vlan 2</li>
+                <li style="margin-left: 10px" class="command">Switch(config-if)#exit</li>
+                <li style="margin-left: 10px" class="command">Switch(config)#interface fastEthernet 0/2</li>
+                <li style="margin-left: 10px" class="command">Switch(config-if)#switchport mode access</li>
+                <li style="margin-left: 10px" class="command">Switch(config-if)#switchport access vlan 3</li>
+                <li style="margin-left: 10px" class="command">Switch(config-if)#exit».</li>
+            </ul>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Доступные способы</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В полученной схеме, ни один из компьютеров не должен видеть другие компьютеры, так как компьютеры, находящиеся в VLAN с одинаковыми номерами, находятся на разных коммутаторах, не связанных между собой. На данном этапе процесс подготовки завершен, и мы перейдем непосредственно к рассмотрению вопроса передачи данных VLAN между коммутаторами.</p>
+            <p>Решить эту задачу можно двумя способами: используя порты доступа или используя транковые порты (trunk). Рассмотри оба этих способа по очереди.</p>
+            <p>Сначала рассмотрим вариант использования портов доступа для соединения коммутаторов между собой. Для этого на каждом из коммутаторов сконфигурируем интерфейсы FastEth 0/3 и FastEth 0/4 как порты доступа, порт 0/3 отнесем к VLAN 2, а порт 0/4 к VLAN 3.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание портов доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Для этого на коммутаторах выполним следующие команды.</p>
+            <p class="command">Switch(config)#interface fastEthernet 0/3</p>
+            <p class="command">Switch(config-if)#switchport mode access</p>
+            <p class="command">Switch(config-if)#switchport access vlan 2</p>
+            <p class="command">Switch(config-if)#exit</p>
+            <p class="command">Switch(config)#interface fastEthernet 0/4</p>
+            <p class="command">Switch(config-if)#switchport mode access</p>
+            <p class="command">Switch(config-if)#switchport access vlan 3</p>
+            <p class="command">Switch(config-if)#exit</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Тестирование</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Для проверки конфигурации выполним команду <span class="command">show vlan brief</span>.</p>
+            <a href="../image/courses/course_6/2017-06-14_21-11-21.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_21-11-21.png" class="center-block img-thumbnail" width="640"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание портов доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_6/2017-06-14_21-16-42.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_21-16-42.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p>На данный момент мы имеем на каждом коммутаторе по два порта принадлежащих VLAN 2 и по два порта принадлежащих VLAN 3. Для установления связи между коммутаторами соединим порты FastEth 0/3 обоих коммутаторов между собой, и таким же образом соединим порты FastEth 0/4.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание портов доступа</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Попробуем теперь с компьютера PC 0 пропинговать остальные компьютеры сети. Компьютер PC 2 будет доступен, остальные нет. Точно так же с PC 1 будет доступен PC 3.</p>
+            <a href="../image/courses/course_6/2017-06-14_21-25-05.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_21-25-05.png" class="center-block img-thumbnail" width="700"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Trunk порт</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p style="text-align: center; margin-top: 100px">Как можно заметить мы добились поставленной цели, разделили сеть на VLAN-ы и передали их между коммутаторами. Вот только получилось в данном случае это немного не рационально. Для передачи каждого VLAN используется отдельная пара портов и отдельный патчкорд, когда VLAN-ов немного такой способ еще допустим, но когда количество VLAN-ов большое лучше использовать другой способ.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Trunk порт</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p class="pull-left" style="width: 450px; border-right: 2px solid #8B8B8B; padding-right: 15px">Для передачи трафика сразу нескольких VLAN-ов по одной линии между коммутаторами используются специальные <a target="_blank" href="https://supportforums.cisco.com/ru/document/95091">транковые порты (trunk)</a>. Для того чтобы настроить данные порты на коммутаторах выполним следующие команды в режиме конфигурирования (в роли trunk портов будут выступать интерфейсы FastEthernet0/3).</p>
+            <p class="pull-right command" style="width: 450px">Switch(config)# interface FastEthernet0/3</p>
+            <p class="pull-right command" style="width: 450px">Switch(config-if)# switchport mode trunk</p>
+            <p class="pull-right command" style="width: 450px">Switch(config-if)# no switchport access vlan 2</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Trunk порт</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p style="text-align: center">Разберем назначение данных команд. С помощью команды <span class="command">interface FastEthernet0/3</span> переходим к конфигурированию интерфейса FastEthernet0/3. Выполняя команду <span class="command">switchportmode trunk</span> вы переводите данный порт в режим работы в виде транка (то есть режим позволяющий передавать через себя трафик нескольких VLAN-ов), данная команда автоматически отменяет введенную нами в конфигурацию интерфейса FastEthernet0/3 команду <span class="command">switchport mode access</span>. Команда <span class="command">no switchport access vlan 2</span> отменяет примененные нами ранее настройки для портов доступа на интерфейсе FastEthernet0/3 (если вы конфигурируете новый интерфейс, то выполнять данную команду не нужно).</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Trunk порт</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_6/2017-06-14_21-55-35.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_21-55-35.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p style="text-align: center">После того, как данная конфигурация установлена в коммутатор, настало время изменить физическую конфигурацию нашей сети в PacketTracer. Так как мы настраиваем вариант в котором все VLAN между коммутаторами будут передаваться через один линк через порты FastEthernet0/3, то мы смело можем удалить соединение между портами FastEthernet0/4.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Trunk порт</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>В теории все уже должно работать, и оба VLAN, настроенные на коммутаторах, должны ходить между ними через один единственный линк. Проверим это. Для этого опять же пропингуем с компьютера PC0 остальные компьютеры сети. Если все настроено верно, то результаты останутся прежними.</p>
+            <a href="../image/courses/course_6/2017-06-14_21-25-05.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_21-25-05.png" class="center-block img-thumbnail" width="700"></a>
+            <p>Используя на интерфейсе команду <span class="command">switchport mode trunk</span> мы перевели его в транковый режим, в котором интерфейс пропускает через себя все существующие на коммутаторе VLAN, но иногда необходимо передавать через данный интерфейс не все VLAN, а лишь некоторые.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка интерфейса</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_6/switchport_mode_trunk.png" target="_blank"><img src="../image/courses/course_6/switchport_mode_trunk.png" class="pull-right img-thumbnail" width="450" style="margin-left: 20px"></a>
+            <p>Попробуем воспроизвести данный случай в Packet Tracer. Для этого добавим пару компьютеров, и зададим им IP адреса 192.168.1.201/24 (подключаем к первому коммутатору) и 192.168.1.202/24 (подключаем ко второму коммутатору). Новые компьютеры подключаем к интерфейсам FastEthernet0/4.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка интерфейса</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Перейдем к настройке коммутаторов. Создадим на каждом из них еще по одному VLAN с номером 4. Добавим в данный VLAN в качестве портов доступа интерфейсы FastEthernet0/4. Проверим полученную конфигурацию.</p>
+            <a href="../image/courses/course_6/2017-06-14_22-33-07.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_22-33-07.png" class="pull-left img-thumbnail" width="550" style="margin-right: 20px"></a>
+            <p>Если все сделано верно то с PC 0 должен пинговаться только PC2, c PC 4 только PC5, а с PC 1 только PC3. То есть трафик всех VLAN свободно ходит между коммутаторами, разрешим между коммутаторами только трафик VLAN 2 и 3. Для этого на обоих коммутаторов выполним команды.</p>
+            <p class="command">Switch(config)# interface fastEthernet 0/3</p>
+            <p class="command">Switch(config-if)# switchport trunk allowed vlan 2-3</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка интерфейса</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Команда <span class="command">switchport trunk allowed vlan 2-3</span> указывает транковому порту коммутатора, какие VLAN ему пропускать через себя. После того как вы выполните эту команду компьютер PC4 должен перестать видеть компьютер PC5.</p>
+            <a href="../image/courses/course_6/2017-06-14_22-50-46.png" target="_blank"><img src="../image/courses/course_6/2017-06-14_22-50-46.png" class="center-block img-thumbnail" width="700"></a>
+            <p>Команда <span class="command">switchport trunk allowed vlan</span> при своем использовании каждый раз задает разрешенные порты заново, то есть если вы выполните команду <span class="command">switchport trunk allowed vlan 5</span>, а потом выполните команду <span class="command">switchport trunk allowed vlan 6</span>, то разрешенным окажется только VLAN номер 6.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>На этом всё</p>
+            </div>
+            <p style="text-align: center">Для добавления VLAN к списку разрешенных служит команда <span class="command">switchport trunk allowedvlan add x</span>, где x номер добавляемого VLAN. Для удаления VLAN из списка разрешенных используется команда <span class="command">switchport trunk allowed vlan remove x</span>, где x номер удаляемого VLAN. Для просмотра информации о настроенных на коммутаторе транках служит команда <span class="command">show int trunk</span>.</p>
+            <p style="text-align: center">Это все, что для начала нужно знать о настройки VLAN на коммутаторах фирмы Cisco. Теперь вы можете потренироваться в их настройке собирая различные конфигурации в Packet Tracer.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/course_page.js"></script>

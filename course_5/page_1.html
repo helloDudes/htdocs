@@ -1,0 +1,189 @@
+<div class="course_theory" style="display: none">
+    <h1>Основы использования технологии VLAN</h1>
+    <div class="theory_text">
+        <div class="theory_page">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left" style="opacity: 0"></div>
+                <p>Задача</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_5/2017-06-09_19-56-20.png" target="_blank"><img src="../image/courses/course_5/2017-06-09_19-56-20.png" class="pull-right img-thumbnail" width="450"></a>
+            <p>В этом блоке мы научимся конфигурировать порты доступа для <a target="_blank" href="http://www.technotrade.com.ua/Articles/what_is_vlan.php">VLAN</a> на коммутаторах фирмы Cisco, а именно соберём и протестируем сеть.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Установка оборудования</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Запускаем Cisco Packet Tracer, выбираем 4 ПК и 1 коммутатор 2960 модели. Соединяем ПК с коммутатором при помощи кабеля Copper Straight-Trough (при сборке учитываем, что PC0 подключен к порту FasteEthernet0/1, PC1 к порту FasteEthernet0/2 и т.д).</p>
+            <p>Далее будим считать, что ПК 1 (PC 0) и ПК 2 (PC 1) находятся в VLAN 1 с адресацией 192.168.1.0/24, ПК 3 (PC 2) и ПК 4 (PC 3) в VLAN 2 с адресацией 172.20.20.0/24. Зададим IP адреса компьютерам в IP Configuration.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка адреса</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_5/2017-06-09_19-56-19.png" target="_blank"><img src="../image/courses/course_5/2017-06-09_19-56-19.png" class="pull-left img-thumbnail" width="450" style="margin-right: 20px"></a>
+            <p>В поле IP Address введите IP адрес компьютера PC0 - 192.168.1.1, в поле Subnet Mask введите его маску – 255.255.255.0
+После этого закройте окно настроек данного хоста и аналогичным образом сконфигурируйте 3 оставшихся. Задайте им следующие IP адреса: PC1 - 192.168.1.2/24, PC2 - 172.20.20.1/24, PC3 - 172.20.20.2/24.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Проверка соединения</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Проверим связность получившейся сети. Для этого проверим пинг с PC0 компьютер PC1, PC2 с PC3, PC3 с PC0, PC2 с PC1. Как мы видим пинги между компьютерами с одной адресацией проходят успешно, с разными проходят неудачно.</p>
+            <a href="../image/courses/course_5/2017-06-09_20-20-06.png" target="_blank"><img src="../image/courses/course_5/2017-06-09_20-20-06.png" class="center-block img-thumbnail" width="600"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Анализ</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Почему это происходит? Хотя в данном случае все четыре компьютера находятся в одном VLAN (как было сказано ранее, по умолчанию все порты коммутатора находятся в VLAN1), все они не могут видеть друг друга, так как находятся в разных подсетях. Компьютеры PC0 и PC1 находятся в подсети 192.168.1.0, а компьютеры PC2 и PC3 в подсети 172.20.20.0.</p>
+            <p>Тут возникает вопрос, зачем же вообще тогда нужны VLAN, если компьютеры и так уже фактически взаимодействуют только парами, как мы хотели в начале. VLAN нужны для того чтобы структурировать сети на коммутаторе и навести в них порядок, а так же для того чтобы было возможно осуществлять маршрутизацию между ними, ведь осуществить маршрутизацию между сетями в той конфигурации которую мы, на данный момент, получили в Packet Tracer будет довольно затруднительно.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка коммутатора</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_5/2017-06-13_20-31-14.png" target="_blank"><img src="../image/courses/course_5/2017-06-13_20-31-14.png" class="pull-right img-thumbnail" width="370" style="margin-left: 20px"></a>
+            <p>Далее перейдем к настройке коммутатора. Откроем его консоль.</p>
+            <p>В открывшемся окне перейдите на вкладку CLI. Вы увидите окно консоли. Нажмите Enter чтобы приступить к вводу команд. Информация, которая в данный момент отражена на консоли, свидетельствует о том что интерфейсы FasteEthernet 0/1 – FasteEthernet 0/4 успешно поднялись и теперь они находятся в рабочем состоянии.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка коммутатора</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Перейдем в привилегированный режим выполнив команду</p>
+            <p class="command">enable</p>
+            <p>Просмотрим информацию о существующих на коммутаторе VLAN-ах для этого выполним команду</p>
+            <p class="command">show vlan brief</p>
+            <p>В результате выполнения команды на экране появится: номера VLAN  первый столбец, название VLAN - второй столбец, состояние VLAN (работает он в данный момент или нет) - третий столбец, порты принадлежащие к данному VLAN - четвертый столбец.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка коммутатора</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Как мы видим по умолчанию на коммутаторе существует пять VLAN-ов. Все порты коммутатора по умолчанию принадлежат VLAN 1. Остальные четыре VLAN являются служебными и используются не очень часто.</p>
+            <a href="../image/courses/course_5/2017-06-13_20-44-10.png" target="_blank"><img src="../image/courses/course_5/2017-06-13_20-44-10.png" class="center-block img-thumbnail" width="400"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка коммутатора</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Для реализации сети, которую мы запланировали сделать, создадим на коммутаторе еще два VLAN.</p>
+            <p>Для этого в привилегированном режиме выполните команду</p>
+            <p class="command">conf t</p>
+            <p>для перехода в режим конфигурации. Вводим команду</p>
+            <p class="command">VLAN 2</p>
+            <p>Данной командой вы создадите на коммутаторе VLAN с номером 2. Указатель ввода <span class="command">Switch(config)#</span> изменится на <span class="command">Switch(config-vlan)#</span> это свидетельствует о том, что вы конфигурируете уже не весь коммутатор в целом, а только отдельный VLAN, в данном случае VLAN номер 2.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Настройка коммутатора</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p style="text-align: center">Если вы используете команду <span class="command">vlan x</span>, где x номер VLAN, когда VLAN x еще не создан на коммутаторе, то он будет автоматически создан и вы перейдете к его конфигурированию.</p>
+            <p style="text-align: center">Когда вы находитесь в режиме конфигурирования VLAN, возможно изменение параметров выбранной виртуальной сети, например можно изменить ее имя с помощью команды <span class="command">name</span>.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание VLAN</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_5/2017-06-13_21-22-35.png" target="_blank"><img src="../image/courses/course_5/2017-06-13_21-22-35.png" class="pull-left img-thumbnail" width="370" style="margin-right: 20px"></a>
+            <p>Для достижения поставленной задачи, сконфигурируем VLAN 2 следующим образом.</p>
+            <p class="command">Switch(config)#vlan 2</p>
+            <p class="command">Switch(config-vlan)#name subnet_192</p>
+            <p class="command">Switch(config)#interface range fastEthernet 0/1-2</p>
+            <p class="command">Switch(config-if-range)#switchport mode access</p>
+            <p class="command">Switch(config-if-range)#switchport access vlan 2</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание VLAN</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Разберем данную конфигурацию. Как уже говорилось ранее командой VLAN 2, мы создаем на коммутаторе новый VLAN с номером 2. Команда name subnet_192 присваивает имя subnet_192 виртуальной сети номер 2.</p>
+            <p>Выполняя команду interface range fastEthernet 0/1-2 мы переходим к конфигурированию интерфейсов fastEthernet 0/1 и fastEthernet 0/2 коммутатора. Ключевое слово range в данной команде, указывает на то, что мы будем конфигурировать не один единственный порт, а целый диапазон портов, в принципе ее можно не использовать.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание VLAN</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Но тогда последние три строки придется заменить на следующее:</p>
+            <p class="command">Switch(config)#interface fastEthernet 0/1</p>
+            <p class="command">Switch(config-if)#switchport mode access</p>
+            <p class="command">Switch(config-if)#switchport access vlan 2</p>
+            <p class="command">Switch(config)#interface fastEthernet 0/2</p>
+            <p class="command">Switch(config-if)#switchport mode access</p>
+            <p class="command">Switch(config-if)#switchport access vlan 2</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание VLAN</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_5/2017-06-13_21-35-03.png" target="_blank"><img src="../image/courses/course_5/2017-06-13_21-35-03.png" class="pull-right img-thumbnail" width="430" style="margin-left: 20px"></a>
+            <p>Команда switchport mode access конфигурирует выбранный порт коммутатора, как порт доступа (access порт). Команда <span class="command">switchport access vlan 2</span> указывает, что данный порт является портом доступа для VLAN номер 2.</p>
+            <p>Просмотрим результат конфигурирования выполнив уже знакомую нам команду <span class="command">show vlan br</span> еще раз.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Создание VLAN</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <a href="../image/courses/course_5/2017-06-13_21-42-37.png" target="_blank"><img src="../image/courses/course_5/2017-06-13_21-42-37.png" class="pull-left img-thumbnail" width="400" style="margin-right: 20px"></a>
+            <p>Как можно заметить из результата выполнения данной команды, у нас на коммутаторе появился еще один VLAN с номером 2 и именем subnet_192, портами доступа которого являются fastEthernet 0/1 и fastEthernet 0/2.</p>
+            <p>Далее аналогичным образом создадим VLAN 3 с именем subnet_172, и сделаем его портами доступа интерфейсы fastEthernet 0/3 и fastEthernet 0/4.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Тестирование</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Всё готово, наша сеть уже настроена, так как мы и планировали. Осталось лишь её протестировать.</p>
+            <p>Перейдите в консоль компьютера PC 0. Проверьте пинг с остальными тремя компьютерами сети.</p>
+            <p>Как вы можете заметить, ничего не изменилось, компьютер PC1 доступен, а компьютеры PC2 и PC3 по прежнему не доступны.</p>
+            <a href="../image/courses/course_5/2017-06-13_21-46-49.png" target="_blank"><img src="../image/courses/course_5/2017-06-13_21-46-49.png" class="center-block img-thumbnail" width="600"></a>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>Тестирование</p>
+                <div class="glyphicon glyphicon-chevron-right right2"></div>
+            </div>
+            <p>Раз ничего не изменилось, то как же мы можем быть уверены, что наша конфигурация VLAN действительно работает? Для этого пойдем на небольшую хитрость - зададим компьютерам PC2 и PC3 IP адреса из сети 192.168.1.0/24. Например 192.168.1.3 и 192.168.1.4. И теперь снова попробуем пропинговать с компьютера PC0 остальные компьютеры сети. Как видим снова ничего не изменилось, хотя все четыре компьютера теоретически должны находится в одной подсети 192.168.1.0/24 и видеть друг друга, на практике они находятся в разных виртуальных локальных сетях и поэтому не могут взаимодействовать между собой.</p>
+            <p>Если есть желание проверить это еще раз, то перейдите на компьютер PC 2 и проверьте пинг остальных компьютеров. Доступным будет только PC3, так как они вместе находятся в одном VLAN номер 3.</p>
+        </div>
+        <div class="theory_page" style="display: none">
+            <div class="head_page">
+                <div class="glyphicon glyphicon-chevron-left left2"></div>
+                <p>На этом всё</p>
+            </div>
+            <p style="text-align: center">На этом всё. В следующий раз мы обсудим как передавать VLAN между коммутаторами, и как реализовать данный функционал на коммутаторах фирмы Cisco.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/course_page.js"></script>
